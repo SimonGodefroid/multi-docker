@@ -18,12 +18,12 @@ export default class Fib extends React.Component {
   }
 
   async fetchIndexes() {
-    const seenIdexes = await axios.get("/api/values/all");
-    this.setState({ seenIdexes: seenIdexes.data });
+    const seenIndexes = await axios.get("/api/values/all");
+    this.setState({ seenIndexes: seenIndexes.data });
   }
 
   renderSeenIndexes() {
-    return this.state.seenIdexes.map(({ number }) => number.join(", "));
+    return this.state.seenIndexes.map(({ number }) => number).join(", ");
   }
 
   renderValues() {
@@ -50,7 +50,7 @@ export default class Fib extends React.Component {
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label>Enter your index:</label>
           <input value={this.state.index} onChange={this.handleChange} />
           <button>Submit</button>
