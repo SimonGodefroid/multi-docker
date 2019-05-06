@@ -12,6 +12,7 @@ services:
     build:
       dockerfile: Dockerfile.dev
       context: ./nginx
+    # should be done in aws config file as well
     ports:
       - "3050:80"
   api:

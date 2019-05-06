@@ -1,0 +1,33 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [{
+      "name": "client",
+      "image": "simongodefroid/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "simongodefroid/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "simongodefroid/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "simongodefroid/multi-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": {
+        "hostPort": 80,
+        "containerPort": 80
+      },
+      "links": ["client", "server"]
+    }
+  ]
+}
